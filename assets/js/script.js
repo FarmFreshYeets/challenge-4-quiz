@@ -22,6 +22,13 @@ if (localStorage.getItem('saved scores') == null) {
 // Create button for starting the game
 var startButton = document.createElement('button')
 startButton.innerHTML = 'Start Quiz'
+startButton.style.margin = '15px'
+startButton.style.padding = '5px 10px'
+startButton.style.border = 'none'
+startButton.style.backgroundColor = '#4CAF50'
+startButton.style.color = 'white'
+startButton.style.fontWeight = 'bold'
+startButton.style.cursor = 'pointer'
 quizBox.appendChild(startButton)
 
 var secondsLeft = 15
@@ -29,12 +36,13 @@ var scoreCounter = 0
 
 // Array of questions that will display on the quiz screen
 var questions = ['What is an easy way to make a reusable block of code?', 'What is the type of the following value: 2', 'What is the type of the following value: "3"', 'What is the type of the following value: true', 'What is the type of a variable that hasn\'t been given a value yet?', 'Which syntax is correct for declaring a variable?', 'What does DOM stand for?', 'Which turns and object into a string that we can store?', 'Which turns a stringified object into an actual object?']
-var answers = ['Functions, Strings, For Loops, Arrays', 'Number, String, Boolean, Null', 'String, Number, Boolean, Null', 'Boolean, Number, String, Null', 'Null, Number, String, Boolean', 'var name = value, name var = value, name = value, var = value', 'Document Object Model, Disco On Mars, Direct Object Model, Donuts Of Mystery', 'JSON.stringify, JSON.parse, object.stringify, object.parse', 'JSON.stringify, JSON.parse, object.stringify, object.parse']
+var answers = ['Functions, Strings, For Loops, Arrays', 'Number, String, Boolean, Null', 'String, Number, Boolean, Null', 'Boolean, Number, String, Null', 'Null, Number, String, Boolean', 'var name = value, name var = value, name = value, var = value', 'Document Object Model, Disco On Mars, Direct Object Model, Donuts Of Mystery', 'JSON.stringify, JSON.parse, object.stringify, object.parse', 'JSON.parse, JSON.stringify, object.stringify, object.parse']
 
 // randomly choose a question and its correspong answer list and display it as multiple choice buttons
 function displayQuiz() {
     var randomQuestion = Math.floor(Math.random() * questions.length)
     var answerList = document.createElement('ol')
+    // needs a way to display answers in a random order
     for (i = 0; i < answers[randomQuestion].split(', ').length; i++) {
         var item = document.createElement('li')
         var itemBtn = document.createElement('button')
@@ -48,11 +56,15 @@ function displayQuiz() {
         item.append(itemBtn)
         itemBtn.textContent = answers[randomQuestion].split(', ')[i]
         answerList.appendChild(item)
+
         // when the answer's button is clicked, run the checkAnswer function
         itemBtn.addEventListener('click', checkAnswer)
     }
     // sets the random question to the h1 element's text content
     quizBox.querySelector('h1').textContent = questions[randomQuestion]
+    if (quizBox.querySelector('#start-text') != null) {
+        quizBox.querySelector('#start-text').remove()
+    }
     if (quizBox.querySelector('ol') != null) {
         quizBox.querySelector('ol').remove()
     }
@@ -98,9 +110,22 @@ function startQuiz() {
             inputInitials.placeholder = 'Initials Here'
             inputInitials.minLength = 2
             inputInitials.maxLength = 2
+            inputInitials.style.padding = '3px'
             var submitBtn = document.createElement('button')
             submitBtn.textContent = 'Submit'
+            submitBtn.style.cursor = 'pointer'
+            submitBtn.style.margin = '15px'
+            submitBtn.style.padding = '5px 10px'
+            submitBtn.style.border = 'none'
+            submitBtn.style.backgroundColor = '#4CAF50'
+            submitBtn.style.color = 'white'
+            submitBtn.style.fontWeight = 'bold'
+            submitBtn.style.cursor = 'pointer'
             quizBox.textContent = 'Game Over'
+            var finalScore = document.createElement('p')
+            finalScore.textContent = 'Final Score: ' + scoreCounter
+            quizBox.appendChild(finalScore)
+            quizBox.style.fontWeight = 'bold'
             initialsForm.appendChild(inputInitials)
             initialsForm.appendChild(submitBtn)
             quizBox.appendChild(initialsForm)
