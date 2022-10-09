@@ -1,0 +1,77 @@
+:root {
+    --green: #4CAF50;
+}
+
+* {
+    background-color: rgb(189, 191, 192);
+}
+
+#view-high-scores {
+    background-color: var(--green);
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+main h2 {
+    position: absolute;
+    right: 15px;
+    top: -10px;
+}
+
+#quiz {
+    padding: 50px;
+    font-size: 150%;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+}
+
+#quiz ol {
+    list-style: none;
+    width: 30%;
+    margin: auto;
+    counter-reset: olCounter;
+    padding-left: 0px;
+}
+
+li button {
+    counter-increment: olCounter;
+    padding: 5px 10px;
+    border: none;
+    background-color: var(--green);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+li button::before {
+    content: counter(olCounter) ". "
+}
+
+#highscore-screen {
+    justify-content: center;
+    width: 350px;
+    text-align: center;
+    margin: auto;
+    font-size: 150%;
+}
+
+#highscore-screen ol {
+    padding-left: 0px;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#highscore-screen button {
+    padding: 5px 10px;
+    border: none;
+    background-color: var(--green);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
